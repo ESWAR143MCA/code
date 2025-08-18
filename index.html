@@ -1,12 +1,317 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ESWAR WORLD</title>
+  <meta name="description" content="Welcome to ESWAR WORLD – a clean, modern one‑page website." />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg: #0b0f17;
+      --bg-elev: #0f1623;
+      --card: #121a2a;
+      --muted: #94a3b8;
+      --text: #e4e8ef;
+      --accent: #7c5cff;
+      --accent-2: #22d3ee;
+      --ring: rgba(124, 92, 255, .45);
+      --maxw: 1100px;
+      --radius: 18px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:var(--text); background: radial-gradient(1000px 600px at 10% -10%, rgba(124,92,255,.25), transparent 55%),
+                         radial-gradient(800px 500px at 90% 10%, rgba(34,211,238,.25), transparent 50%), var(--bg);
+      line-height:1.6;
+    }
+    a{color:inherit; text-decoration:none}
+    img{max-width:100%; display:block}
+    .container{max-width:var(--maxw); margin-inline:auto; padding-inline:24px}
+    .btn{display:inline-flex; align-items:center; gap:.6rem; padding:.9rem 1.2rem; border-radius:999px; font-weight:600; background:linear-gradient(135deg, var(--accent), var(--accent-2)); color:#081018; border:none; cursor:pointer; box-shadow:0 10px 35px rgba(124,92,255,.35); transition: transform .15s ease, box-shadow .2s ease}
+    .btn:hover{transform:translateY(-1px); box-shadow:0 12px 45px rgba(124,92,255,.45)}
+    .btn.ghost{background:transparent; color:var(--text); border:1px solid rgba(255,255,255,.1)}
+    .pill{padding:.35rem .75rem; background:rgba(124,92,255,.15); color:#d8d1ff; border:1px solid rgba(124,92,255,.35); border-radius:999px; font-size:.85rem; backdrop-filter: blur(8px)}
+    .shadow-soft{box-shadow: 0 1px 0 rgba(255,255,255,.06) inset, 0 10px 30px rgba(2,8,23,.45)}
+
+    /* Header */
+    header{position:sticky; top:0; z-index:40; backdrop-filter:saturate(120%) blur(8px); background:rgba(11,15,23,.6); border-bottom:1px solid rgba(255,255,255,.06)}
+    .nav{display:flex; align-items:center; justify-content:space-between; padding:14px 0}
+    .brand{display:flex; align-items:center; gap:.7rem; font-weight:800; letter-spacing:.3px}
+    .logo{display:grid; place-items:center; width:36px; height:36px; border-radius:12px; background:linear-gradient(135deg, var(--accent), var(--accent-2)); color:#081018; font-weight:900}
+    nav ul{list-style:none; display:flex; gap:1rem; padding:0; margin:0}
+    nav a{padding:.55rem .9rem; border-radius:999px; font-weight:600; color:var(--muted)}
+    nav a.active, nav a:hover{color:#fff; background:rgba(255,255,255,.06)}
+    .menu-toggle{display:none}
+
+    /* Hero */
+    .hero{padding:90px 0 70px; position:relative}
+    .hero-grid{display:grid; grid-template-columns: 1.2fr 1fr; gap:36px; align-items:center}
+    .hero h1{font-size: clamp(2rem, 4vw + 1rem, 4rem); line-height:1.1; margin: 0 0 .6rem}
+    .hero p{color:var(--muted); margin: 0 0 1.2rem; font-size: clamp(1rem, 1vw + .7rem, 1.2rem)}
+    .hero-card{background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02)); border:1px solid rgba(255,255,255,.08); border-radius: var(--radius); padding: 22px; backdrop-filter: blur(10px)}
+    .stats{display:grid; grid-template-columns:repeat(3, 1fr); gap:14px; margin-top:16px}
+    .stat{background:var(--card); border:1px solid rgba(255,255,255,.08); border-radius:14px; padding:14px; text-align:center}
+    .stat h3{margin:0; font-size:1.4rem}
+    .stat p{margin:.2rem 0 0; color:var(--muted); font-size:.9rem}
+
+    /* Sections */
+    section{padding:72px 0;}
+    .section-title{display:flex; align-items:center; justify-content:space-between; margin-bottom:24px}
+    .cards{display:grid; grid-template-columns:repeat(3, 1fr); gap:18px}
+    .card{background:var(--card); border:1px solid rgba(255,255,255,.08); border-radius:var(--radius); padding:20px}
+    .card h3{margin:.1rem 0 .35rem}
+    .muted{color:var(--muted)}
+
+    /* About */
+    .about{display:grid; grid-template-columns: 1.1fr 1fr; gap:26px; align-items:center}
+    .about .feature{display:flex; gap:14px; align-items:flex-start; background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.06); padding:14px; border-radius:12px}
+
+    /* Projects */
+    .proj{display:grid; grid-template-columns:repeat(3, 1fr); gap:18px}
+    .proj .item{background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02)); border:1px solid rgba(255,255,255,.08); border-radius:14px; overflow:hidden}
+    .proj .thumb{aspect-ratio:16/10; background:linear-gradient(135deg, rgba(124,92,255,.35), rgba(34,211,238,.35));}
+    .proj .meta{padding:16px}
+
+    /* Contact */
+    form{display:grid; gap:12px}
+    input, textarea{width:100%; background:#0b1322; border:1px solid rgba(255,255,255,.08); border-radius:12px; padding:12px 14px; color:var(--text)}
+    input:focus, textarea:focus{outline:2px solid var(--ring); border-color: transparent}
+    textarea{min-height:120px; resize:vertical}
+
+    /* Footer */
+    footer{padding:28px 0 40px; color:var(--muted); border-top:1px solid rgba(255,255,255,.06)}
+
+    /* Responsive */
+    @media (max-width: 940px){
+      .hero-grid, .about {grid-template-columns: 1fr}
+      .proj{grid-template-columns:1fr 1fr}
+      .cards{grid-template-columns:1fr 1fr}
+    }
+    @media (max-width: 640px){
+      nav ul{display:none; position:absolute; right:24px; top:60px; background:rgba(11,15,23,.95); border:1px solid rgba(255,255,255,.08); border-radius:12px; padding:8px}
+      nav ul.open{display:flex; flex-direction:column; gap:.2rem; min-width: 200px}
+      .menu-toggle{display:inline-flex; gap:.4rem; align-items:center; padding:.5rem .8rem; border-radius:999px; border:1px solid rgba(255,255,255,.12); background:transparent; color:#fff}
+      .hero{padding-top:70px}
+      .stats{grid-template-columns:1fr 1fr 1fr}
+      .proj{grid-template-columns:1fr}
+      .cards{grid-template-columns:1fr}
+    }
+  </style>
 </head>
 <body>
-    <h1>Welcome to ESWAR WORLD</h1>
-    
+  <!-- Header / Nav -->
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#home" aria-label="ESWAR WORLD home">
+        <span class="logo">EW</span>
+        <span>ESWAR WORLD</span>
+      </a>
+      <button class="menu-toggle" aria-label="Toggle menu" onclick="document.querySelector('nav ul').classList.toggle('open')">☰ Menu</button>
+      <nav aria-label="Primary">
+        <ul>
+          <li><a class="active" href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <main id="home" class="hero">
+    <div class="container hero-grid">
+      <div>
+        <span class="pill">Welcome</span>
+        <h1>Welcome to <span style="background:linear-gradient(135deg, var(--accent), var(--accent-2)); -webkit-background-clip:text; background-clip:text; color:transparent">ESWAR WORLD</span></h1>
+        <p>A sleek, responsive one‑page website template you can customize for your portfolio, business, or personal brand.</p>
+        <div style="display:flex; gap:.6rem; flex-wrap:wrap; margin-top:10px">
+          <a class="btn" href="#about">Explore</a>
+          <a class="btn ghost" href="#contact">Say Hello</a>
+        </div>
+        <div class="stats">
+          <div class="stat"><h3>10+</h3><p>Mini Projects</p></div>
+          <div class="stat"><h3>5⭐</h3><p>Quality Focus</p></div>
+          <div class="stat"><h3>24/7</h3><p>Reachable</p></div>
+        </div>
+      </div>
+      <div class="hero-card shadow-soft" aria-hidden="true">
+        <img src="https://images.unsplash.com/photo-1527437934671-61474b530017?q=80&w=1200&auto=format&fit=crop" alt="Abstract tech gradient" style="border-radius:12px">
+        <p class="muted" style="margin:.7rem 0 0">Clean layout • Fast • Mobile‑friendly</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- About -->
+  <section id="about">
+    <div class="container">
+      <div class="section-title">
+        <div>
+          <div class="pill">About</div>
+          <h2 style="margin:.4rem 0 0">Who am I?</h2>
+        </div>
+        <a class="btn ghost" href="#projects">See Projects ↓</a>
+      </div>
+      <div class="about">
+        <div class="card">
+          <h3>Hi, I’m Eswar 👋</h3>
+          <p class="muted">I build simple, beautiful web experiences. This template is crafted to be a great starting point: accessible, fast, and easy to edit—just replace text and images.</p>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:12px">
+            <div class="feature"><span>🚀</span><div><strong>Fast & Lightweight</strong><div class="muted">Minimal CSS, no frameworks needed.</div></div></div>
+            <div class="feature"><span>📱</span><div><strong>Responsive</strong><div class="muted">Looks great on phones and desktops.</div></div></div>
+            <div class="feature"><span>♿</span><div><strong>Accessible</strong><div class="muted">Keyboard‑friendly navigation & ARIA labels.</div></div></div>
+            <div class="feature"><span>🛠️</span><div><strong>Easy to Customize</strong><div class="muted">Edit colors, text, and sections quickly.</div></div></div>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Quick Info</h3>
+          <ul class="muted" style="margin:0; padding-left:18px">
+            <li>Based in India 🇮🇳</li>
+            <li>Focus: Frontend, UI/UX, teaching</li>
+            <li>Tools: HTML, CSS, JS</li>
+            <li>Open for collaboration 👨‍💻</li>
+          </ul>
+          <div style="margin-top:14px; display:flex; gap:.6rem; flex-wrap:wrap">
+            <a class="btn" href="#contact">Work with me</a>
+            <a class="btn ghost" href="#features">What I do</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features / Services -->
+  <section id="features">
+    <div class="container">
+      <div class="section-title">
+        <div>
+          <div class="pill">Features</div>
+          <h2 style="margin:.4rem 0 0">What I can do for you</h2>
+        </div>
+      </div>
+      <div class="cards">
+        <div class="card"><h3>Web Design</h3><p class="muted">Elegant, modern layouts with intuitive UX.</p></div>
+        <div class="card"><h3>Development</h3><p class="muted">Clean, semantic HTML/CSS/JS with best practices.</p></div>
+        <div class="card"><h3>Performance</h3><p class="muted">Optimized assets and accessible components.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects">
+    <div class="container">
+      <div class="section-title">
+        <div>
+          <div class="pill">Projects</div>
+          <h2 style="margin:.4rem 0 0">Highlighted work</h2>
+        </div>
+        <a class="btn ghost" href="#contact">Get a quote</a>
+      </div>
+      <div class="proj">
+        <article class="item">
+          <div class="thumb"></div>
+          <div class="meta">
+            <h3>Portfolio Starter</h3>
+            <p class="muted">A simple starter you can clone and shape into your personal brand.</p>
+          </div>
+        </article>
+        <article class="item">
+          <div class="thumb" style="background:linear-gradient(135deg, rgba(34,211,238,.35), rgba(124,92,255,.35))"></div>
+          <div class="meta">
+            <h3>Landing Page</h3>
+            <p class="muted">Clean hero, clear call‑to‑actions, and responsive grid system.</p>
+          </div>
+        </article>
+        <article class="item">
+          <div class="thumb" style="background:linear-gradient(135deg, rgba(124,92,255,.35), rgba(59,130,246,.35))"></div>
+          <div class="meta">
+            <h3>UI Component Kit</h3>
+            <p class="muted">Reusable cards, buttons, and sections to speed up builds.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <div class="container">
+      <div class="section-title">
+        <div>
+          <div class="pill">Contact</div>
+          <h2 style="margin:.4rem 0 0">Let’s build something great</h2>
+        </div>
+      </div>
+      <div class="about">
+        <div class="card">
+          <form onsubmit="event.preventDefault(); alert('Thanks, I\'ll get back to you soon!'); this.reset();">
+            <div style="display:grid; gap:12px; grid-template-columns:1fr 1fr">
+              <input type="text" placeholder="First name" required>
+              <input type="text" placeholder="Last name" required>
+            </div>
+            <input type="email" placeholder="Email" required>
+            <textarea placeholder="Your message" required></textarea>
+            <button class="btn" type="submit">Send Message</button>
+          </form>
+        </div>
+        <div class="card">
+          <h3>Reach me</h3>
+          <p class="muted">Prefer email? <a href="mailto:hello@eswar.world">hello@eswar.world</a></p>
+          <p class="muted">Or find me on socials:</p>
+          <div style="display:flex; gap:.6rem; flex-wrap:wrap">
+            <a class="btn ghost" href="#" aria-label="Twitter link">Twitter/X</a>
+            <a class="btn ghost" href="#" aria-label="GitHub link">GitHub</a>
+            <a class="btn ghost" href="#" aria-label="LinkedIn link">LinkedIn</a>
+          </div>
+          <p class="muted" style="margin-top:12px">Location: India • Available remotely</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container" style="display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap">
+      <div>© <span id="year"></span> ESWAR WORLD. All rights reserved.</div>
+      <a class="pill" href="#home">Back to top ↑</a>
+    </div>
+  </footer>
+
+  <script>
+    // Set current year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Active link on scroll
+    const links = [...document.querySelectorAll('nav a')];
+    const sections = links.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+    const makeActive = () => {
+      const y = window.scrollY + 120; // offset for sticky header
+      let idx = 0;
+      for (let i=0;i<sections.length;i++){
+        if (sections[i].offsetTop <= y) idx = i;
+      }
+      links.forEach(l => l.classList.remove('active'));
+      links[idx]?.classList.add('active');
+    };
+    window.addEventListener('scroll', makeActive);
+    window.addEventListener('load', makeActive);
+
+    // Smooth scroll for internal links
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const id = a.getAttribute('href');
+        const el = document.querySelector(id);
+        if (el){
+          e.preventDefault();
+          window.scrollTo({ top: el.offsetTop - 60, behavior: 'smooth' });
+          history.pushState(null, '', id);
+        }
+      });
+    });
+  </script>
 </body>
 </html>
