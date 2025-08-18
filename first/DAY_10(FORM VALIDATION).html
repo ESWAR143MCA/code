@@ -1,0 +1,33 @@
+<html>
+    <head>
+        <title>FORM VALIDATION:</title>
+    </head>
+    <body>
+        <h3>FORM VALIDATION :</h3>
+        <legend>NIT CONSULTATION FORM</legend>
+        <fieldset>
+        <FORM action="main.java">
+            <label type="text">FULL NAME :</label>
+            <input type="text" placeholder="FIRST NAME" id="fname" pattern="[A-Za-z] {3, }" required>
+            <input type="text" placeholder="LAST NAME" id="lname" pattern="[A-Za-z] {6, }" required ><br><br>
+            <label type="NUMBER">PHONE NUMBER :</label>
+            <input type="number" placeholder="PHONE NUMBER" id="num" pattern="[0-9]{10}" required="num">
+            <label type="email">EMAIL :</label>
+            <input type="email" name="email" required pattern="[a-zA-Z0-9._%+-]+@gmail\.com$" title="Please enter a valid Gmail address">
+            <label type="text">Company or Consulttion Name</label>
+            <input type="text" placeholder="Naresh IT" id="text" readonly><br>
+            <label type="text">Consulttion Interest</label>
+            <input type="text" placeholder="Consulttion" disabled><br>
+            <label type="datetime-local">Desired Date For Consulttion </label>
+            <input type="datetime-local"><br>
+            <label type="time">Desired Time For Consulttion</label>
+            <input type="time"><br>
+            <label type="text">Additional Information/Comments :</label>
+            <textarea name="" rows="20" cols="40" id="text"></textarea><BR><BR>
+            <button>SEND</button>
+            </fieldset>
+        </FORM>
+
+
+    </body>
+</html>
