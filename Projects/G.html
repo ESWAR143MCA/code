@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Image Beside Text</title>
+<style>
+  .row {
+    display: flex;
+    align-items: center;     /* vertically center text & image */
+    gap: 16px;               /* space between image and text */
+    max-width: 900px;
+    margin: 24px auto;
+    padding: 12px;
+  }
+  .row img {
+    width: 200px;           /* control image size */
+    max-width: 40vw;        /* keep it responsive */
+    height: auto;
+    border-radius: 12px;     /* soften corners (change to 50% for circle) */
+  }
+  .row .text {
+    flex: 1;                /* text takes remaining space */
+    line-height: 1.6;
+    font-family: Arial, sans-serif;
+  }
+  /* Stack on small screens */
+  @media (max-width: 600px) {
+    .row { flex-direction: column; align-items: flex-start; }
+    .row img { width: 100%; max-width: 100%; }
+  }
+</style>
+</head>
+<body>
+  <section class="row">
+    <img src="../images/g (1).jpeg" alt="Descriptive alt text">
+    <div class="text">
+      <h2> శ్రీ విశ్వ వినాయక మండలి, ఎమిగనూరు (కర్నూలు జిల్లా)</h2>
+      <p>
+       శ్రీ విశ్వ వినాయక మండలి, ఎమిగనూరు (కర్నూలు జిల్లా) :
+
+హైదరాబాద్‌లో ప్రసిద్ధి చెందిన ఖైరతాబాద్ గణపతితో పాటు మినీ ఖైరతాబాద్ గణేష్ ప్రత్యేక ఆకర్షణ.
+
+చిన్నారులు, భక్తులు సులభంగా దర్శించుకోవడానికి ఈ మినీ గణపతిని ప్రతిష్టిస్తారు.
+
+ఎమిగనూరు, కర్నూలు జిల్లా లోని శ్రీ విశ్వ వినాయక మండలి కూడా ఈ ఆచారాన్ని కొనసాగిస్తోంది.
+
+ఇక్కడ కూడా భక్తుల కోసం అందమైన మినీ గణపతి విగ్రహాన్ని ప్రతిష్టించి అలంకరిస్తారు.
+
+చిన్న ప్రతిమ అయినా భక్తుల్లో మహా ఆనందాన్ని, విశ్వాసాన్ని కలిగిస్తుంది.
+
+అందుకే ఎమిగనూరులోని ఈ గణపతి ఉత్సవం ప్రత్యేక స్థానాన్ని సంపాదించుకుంది.
+
+
+      </p>
+    </div>
+  </section>
+</body>
+</html>
